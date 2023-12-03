@@ -14,5 +14,15 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('Your_SonarQube_Server_Name') {
+                        // Run SonarScanner for Node.js
+                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
     }
 }
