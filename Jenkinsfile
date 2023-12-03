@@ -18,14 +18,14 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-        stage('SonarQube Analysis') {
+        stage('Sonarqube Analysis') {
             steps {
-                script {
-                    withSonarQubeEnv('sonar-server') {
-                        // Run SonarScanner for Node.js
-                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
-                    }
-                }
+                withSonarQubeEnv('sonar-server'){
+                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=productivity-app
+ \
+                   -Dsonar.java.binaries=. \
+                   -Dsonar.projectKey=productivity-app '''
+               }
             }
         }
     }
