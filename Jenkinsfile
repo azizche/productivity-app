@@ -17,7 +17,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('Your_SonarQube_Server_Name') {
+                    withSonarQubeEnv('sonar-scanner') {
                         // Run SonarScanner for Node.js
                         sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
                     }
