@@ -21,10 +21,7 @@ pipeline {
         stage('Sonarqube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server'){
-                   sh ''' $SONAR_SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=productivity-app
- \
-                   -Dsonar.java.binaries=. \
-                   -Dsonar.projectKey=productivity-app '''
+                   sh ''' $SONAR_SCANNER_HOME/bin/sonar-scanner '''
                }
             }
         }
