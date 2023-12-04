@@ -51,8 +51,17 @@ pipeline {
 }
 	stage('Build Images') {
 	steps {
-		sh 'docker build -t rakeshpotnuru/productivity-app:client-latest client'
-		sh 'docker build -t rakeshpotnuru/productivity-app:server-latest server'
+		sh 'docker build -t azizche/productivity-app:client-latest client'
+		sh 'docker build -t azizche/productivity-app:server-latest server'
+	}
+}
+	    stage('Push Images to DockerHub') {
+	steps {
+		withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+			sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+			sh 'docker push azizche/productivity-app:client-latest'
+			sh 'docker push azizche/productivity-app:server-latest'
+		}
 	}
 }
     }
