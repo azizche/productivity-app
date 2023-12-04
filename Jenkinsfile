@@ -72,16 +72,26 @@ pipeline {
         sh 'kubectl config use-context minikube'
 dir('client'){
         sh 'kubectl apply -f client-deployment.yaml'
-	        sh 'kubectl expose deployment client-deployment --type=NodePort --port=80'
 
 	
 }
 	dir ('server'){
         sh 'kubectl apply -f server-deployment.yaml'
-	 sh 'kubectl expose deployment server-deployment --type=NodePort --port=80'
 
 	}
     }
 }
+	     stage('Deploy to Minikube'){
+		     dir('client'){
+	        sh 'kubectl expose deployment client-deployment --type=NodePort --port=80'
+
+	
+}
+	dir ('server'){
+	 sh 'kubectl expose deployment server-deployment --type=NodePort --port=80'
+
+	}
+		     
+	     }
     }
 }
