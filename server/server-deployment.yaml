@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+        - name: server-container
+          image: azizche/productivity-app:server-latest
+          env:
+            - name: MONGODB_URI
+              value: "${MONGODB_URI}"
+            - name: TOKEN_KEY
+              value: "${TOKEN_KEY}"
+            - name: EMAIL
+              value: "${EMAIL}"
+            - name: PASSWORD
+              value: "${PASSWORD}"
