@@ -36,7 +36,7 @@ pipeline {
 			        sh 'npm test'
 		        }
 	        }
-        }*/
+        }
 	stage('Server Tests') {
 	steps {
 		dir('server') {
@@ -47,6 +47,12 @@ pipeline {
 			sh 'export PASSWORD=$PASSWORD'
 			sh 'npm test'
 		}
+	}
+}*/
+	stage('Build Images') {
+	steps {
+		sh 'docker build -t rakeshpotnuru/productivity-app:client-latest client'
+		sh 'docker build -t rakeshpotnuru/productivity-app:server-latest server'
 	}
 }
     }
