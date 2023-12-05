@@ -15,12 +15,12 @@ pipeline {
             }
         }
 
-         /*stage('OWASP Scan') {
+         stage('OWASP Scan') {
             steps {
                 dependencyCheck additionalArguments: '--scan ./ ', odcInstallation: 'OWASP Dependency-Check Plugin'*/
-                //dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-         //  }
-      //  } 
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+           }
+        } 
         
         stage('Sonarqube Analysis') {
             steps {
