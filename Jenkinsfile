@@ -20,14 +20,14 @@ pipeline {
 		    sh "echo Sucess"
            }
         } 
-        
+        /*
         stage('Sonarqube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
                     sh "$SONAR_SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=MiniProjet -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=squ_354617236488464883037a4436fc6ca9226dba02"
                 }
             }
-        }
+        }*/
         stage('Client Tests') {
 	        steps {
 		        dir('client') {
