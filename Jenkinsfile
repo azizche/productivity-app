@@ -110,7 +110,7 @@ dir('client'){
 	    stage('Slack Notification') {
     steps {
         script {
-		sh "curl https://slack.com/api/chat.postMessage -X POST -d “channel=#projet-cicd” -d “text=Hello World “ -d “token=xoxb-6307892099297-6288968197382-f6Ab6P88HF803SoAdLxLEuKN” -d “icon_emoji=:simple_smile:” "
+		sh "curl https://slack.com/api/chat.postMessage -X POST -d “channel=#projet-cicd” -d “text=Hello World “ -d “token=xoxb-6307892099297-6288968197382-dV7aR2CRRN1L110jMbj99DSt” -d “icon_emoji=:simple_smile:” "
            }
     }
 }
