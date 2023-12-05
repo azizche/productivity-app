@@ -106,7 +106,7 @@ dir('client'){
 }
 	
 		     
-	     }
+	     
 	    stage('Slack Notification') {
     steps {
         script {
@@ -114,6 +114,7 @@ dir('client'){
         }
     }
 }
+    }
 	    
     }
 
