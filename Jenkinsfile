@@ -24,6 +24,7 @@ pipeline {
         } 
         stage('Sonarqube Analysis') {
             steps {
+		    sh "echo success"
         /*
                 withSonarQubeEnv('sonar-server') {
                     sh "$SONAR_SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=MiniProjet -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=squ_354617236488464883037a4436fc6ca9226dba02"
@@ -32,6 +33,7 @@ pipeline {
         }
         stage('Client Tests') {
 	        steps {
+			sh "echo success"
 			/*
 		        dir('client') {
 			        sh 'npm install'
@@ -42,6 +44,7 @@ pipeline {
 	stage('Server Tests') {
 		
 	steps {
+		sh "echo success"
 		/*
 		dir('server') {
 			sh 'npm install'
@@ -56,6 +59,7 @@ pipeline {
 	stage('Build Images') {
 		
 	steps {
+		sh "echo success"
 		/*
 		sh 'docker build -t azizche1/productivity-app:client-latest client'
 		sh 'docker build -t azizche1/productivity-app:server-latest server'
@@ -63,6 +67,7 @@ pipeline {
 }
 	    stage('Push Images to DockerHub') {
 	steps {
+		sh "echo success"
 		/*
 		withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
 			sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
@@ -75,6 +80,7 @@ pipeline {
 }
 	    stage('Deploy to Minikube') {
     steps {
+	    sh "echo success"
        /* sh 'minikube start'
         sh 'kubectl config use-context minikube'
 dir('client'){
@@ -90,6 +96,7 @@ dir('client'){
 }
 	     stage('Expose to Minikube'){
 		     steps{
+			     sh "echo success"
 			     /*
 		     dir('client'){
 	        sh 'kubectl expose deployment client-deployment --type=NodePort --port=8000'*/
