@@ -109,4 +109,5 @@ sh 'curl https://slack.com/api/chat.postMessage -X POST -d "channel=#projet-cicd
     }
 	    
     }
+}
 
