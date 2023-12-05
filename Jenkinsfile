@@ -110,8 +110,8 @@ dir('client'){
 	    stage('Slack Notification') {
     steps {
         script {
-            sh "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"CI/CD successful\", \"channel\":\"$SLACK_CHANNEL\"}' https://slack.com/api/chat.postMessage?token=$SLACK_TOKEN"
-        }
+		sh "curl https://slack.com/api/chat.postMessage -X POST -d “channel=#projet-cicd” -d “text=Hello World “ -d “token=xoxb-6307892099297-6288968197382-f6Ab6P88HF803SoAdLxLEuKN” -d “icon_emoji=:simple_smile:” "
+           }
     }
 }
     }
