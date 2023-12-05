@@ -81,7 +81,7 @@ dir('client'){
 	}
     }
 }
-	     stage('Deploy to Minikube'){
+	     stage('Expose to Minikube'){
 		     dir('client'){
 	        sh 'kubectl expose deployment client-deployment --type=NodePort --port=8000'
 
