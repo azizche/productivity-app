@@ -59,10 +59,11 @@ pipeline {
 		/*
 		sh 'docker build -t azizche1/productivity-app:client-latest client'
 		sh 'docker build -t azizche1/productivity-app:server-latest server'
-	}
+	*/}
 }
 	    stage('Push Images to DockerHub') {
 	steps {
+		/*
 		withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
 			sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
 			sh 'docker tag azizche1/productivity-app:client-latest azizche1/productivity-app:client-latest'
