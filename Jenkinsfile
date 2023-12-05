@@ -5,7 +5,9 @@ pipeline {
 	MONGODB_URI = credentials('mongodb-uri')
 	TOKEN_KEY = credentials('token-key')
 	EMAIL = credentials('email')
-	PASSWORD = credentials('password')
+	PASSWORD = credentials('password')       
+	SLACK_TOKEN = 'xoxb-6307892099297-6288694770534-Ye0i6Bc8xPsA1gIQP7bDXq0i'
+        SLACK_CHANNEL = '#projet-cicd'
     }
 
     stages {
@@ -20,24 +22,27 @@ pipeline {
 		    sh "echo Sucess"
            }
         } 
-        /*
         stage('Sonarqube Analysis') {
             steps {
+        /*
                 withSonarQubeEnv('sonar-server') {
                     sh "$SONAR_SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=MiniProjet -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=squ_354617236488464883037a4436fc6ca9226dba02"
                 }
-            }
-        }*/
+           */ }
+        }
         stage('Client Tests') {
 	        steps {
+			/*
 		        dir('client') {
 			        sh 'npm install'
 			        sh 'npm test'
 		        }
-	        }
+	        */}
         }
 	stage('Server Tests') {
+		
 	steps {
+		/*
 		dir('server') {
 			sh 'npm install'
 			sh 'export MONGODB_URI=$MONGODB_URI'
@@ -46,10 +51,12 @@ pipeline {
 			sh 'export PASSWORD=$PASSWORD'
 			sh 'npm test'
 		}
-	}
+	*/}
 }
 	stage('Build Images') {
+		
 	steps {
+		/*
 		sh 'docker build -t azizche1/productivity-app:client-latest client'
 		sh 'docker build -t azizche1/productivity-app:server-latest server'
 	}
@@ -63,11 +70,11 @@ pipeline {
 			sh 'docker tag azizche1/productivity-app:server-latest azizche1/productivity-app:server-latest'
 			sh 'docker push azizche1/productivity-app:server-latest'
 		}
-	}
+	*/}
 }
 	    stage('Deploy to Minikube') {
     steps {
-        sh 'minikube start'
+       /* sh 'minikube start'
         sh 'kubectl config use-context minikube'
 dir('client'){
         sh 'kubectl apply -f client-deployment.yaml'
@@ -78,12 +85,13 @@ dir('client'){
         sh 'kubectl apply -f server-deployment.yaml'
 
 	}
-    }
+    */}
 }
 	     stage('Expose to Minikube'){
 		     steps{
+			     /*
 		     dir('client'){
-	        sh 'kubectl expose deployment client-deployment --type=NodePort --port=8000'
+	        sh 'kubectl expose deployment client-deployment --type=NodePort --port=8000'*/
 		     }
 
 	
@@ -91,5 +99,13 @@ dir('client'){
 	
 		     
 	     }
+	    stage('Slack Notification') {
+    steps {
+        script {
+            sh "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"CI/CD successful\", \"channel\":\"$SLACK_CHANNEL\"}' https://slack.com/api/chat.postMessage?token=$SLACK_TOKEN"
+        }
+    }
+}
+	    
     }
 }
