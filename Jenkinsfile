@@ -6,7 +6,7 @@ pipeline {
 	TOKEN_KEY = credentials('token-key')
 	EMAIL = credentials('email')
 	PASSWORD = credentials('password')       
-	SLACK_TOKEN = 'xoxb-6307892099297-6288694770534-Ye0i6Bc8xPsA1gIQP7bDXq0i'
+	SLACK_TOKEN = 'xoxb-6307892099297-6288694770534-PM5yC5giXASr7sQfMRIZj8Xn'
         SLACK_CHANNEL = '#projet-cicd'
     }
 
